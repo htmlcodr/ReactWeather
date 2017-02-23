@@ -13,9 +13,18 @@ module.exports = {
 
     return axios.get(requestUrl).then(function (res) {
 //      debugger;
+
+      if (res.data.list.length > 0) {
+        return res.data.list[0].main.temp;
+      } else {
+        throw new Error('no city by that name');
+      }
+
+
+
       return res.data.list[0].main.temp;
 
-// had to chnage this - I think the API has changed...
+// had to change this - I think the API has changed...
 
 //      if (res.data.cod && res.data.message) {
 //            throw new Error(requestUrl);
